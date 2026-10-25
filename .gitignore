@@ -1,0 +1,17 @@
+# Dependencies and build output (none yet, kept for later)
+node_modules/
+dist/
+
+# Local environment and secrets
+.env
+.env.*
+
+# Editor, OS and tool folders
+.claude/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

@@ -1,0 +1,9 @@
+{
+  "name": "tieu-tien",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Tiêu Tiền Tỷ Phú — a tiny static 'spend the money' game in Vietnamese dong",
+  "scripts": {
+    "test": "node --test"
+  }
+}

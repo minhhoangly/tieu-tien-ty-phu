@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tiêu Tiền Tỷ Phú</title>
+  <meta name="description" content="Bạn có hàng nghìn tỷ đồng. Hãy mua phở, xe máy, biệt thự, máy bay riêng và xem biên lai của bạn dài đến đâu.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="hero">
+    <h1>Tiêu hết <span id="budget-title">10.000 tỷ</span> đồng</h1>
+    <p class="lede">Từ tô phở đến máy bay riêng — bạn sẽ tiêu thế nào?</p>
+  </header>
+
+  <section class="budget-panel" aria-labelledby="budget-heading">
+    <div class="budget-main">
+      <h2 id="budget-heading">Chọn mức tài sản của bạn</h2>
+      <p class="tier-desc" id="tier-desc"></p>
+      <p class="tier-vnd" id="tier-vnd"></p>
+      <input type="range" class="budget-slider" id="budget-slider" aria-labelledby="budget-heading">
+      <div class="ticks" id="budget-ticks" aria-hidden="true"></div>
+    </div>
+    <aside class="interest-card" aria-labelledby="interest-heading">
+      <h3 id="interest-heading">Lãi tiết kiệm mỗi tháng</h3>
+      <p class="interest-value" id="interest-value"></p>
+      <p class="interest-compact" id="interest-compact"></p>
+      <p class="interest-note">Giả định gửi ngân hàng lãi suất <span id="interest-rate"></span>/năm, lãi đơn (ngân sách × lãi suất ÷ 12).</p>
+    </aside>
+  </section>
+
+  <div class="money-bar" id="money-bar">
+    <div class="money-label">Số dư còn lại</div>
+    <div class="money-value" id="money-value">0 ₫</div>
+    <div class="money-compact" id="money-compact"></div>
+  </div>
+  <p class="sr-only" id="sr-balance" role="status" aria-live="polite"></p>
+
+  <main class="container">
+    <ul class="items" id="items"></ul>
+
+    <section class="receipt" id="receipt" hidden aria-labelledby="receipt-title">
+      <h2 id="receipt-title">Biên lai của bạn</h2>
+      <ul class="receipt-list" id="receipt-list"></ul>
+      <div class="receipt-total"><span>TỔNG</span><strong id="receipt-total">0 ₫</strong></div>
+      <div class="receipt-actions">
+        <button type="button" class="btn btn-primary" id="share-btn">Sao chép biên lai</button>
+        <button type="button" class="btn btn-ghost" id="reset-btn">Làm lại từ đầu</button>
+      </div>
+      <p class="receipt-status" id="receipt-status" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Quy đổi <span id="rate-note"></span>. Mức tài sản, xếp hạng và giá chỉ mang tính tham khảo (ước tính minh hoạ, không phải số liệu hay báo giá chính thức).</p>
+    <p>Lấy cảm hứng từ ý tưởng “Spend Bill Gates’ Money” của Neal Agarwal. Mã nguồn và hình minh hoạ ở đây là bản làm lại độc lập.</p>
+  </footer>
+
+  <noscript><p class="noscript">Trang này cần JavaScript để hoạt động.</p></noscript>
+
+  <script src="js/core.js"></script>
+  <script src="js/budgets.js"></script>
+  <script src="js/items.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
