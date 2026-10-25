@@ -28,6 +28,23 @@ test('formatCompact groups large whole parts with dots', () => {
   assert.equal(Core.formatCompact(1.04e15), '1.040 nghìn tỷ');
 });
 
+test('formatNumber rounds, trims zeros and uses Vietnamese separators', () => {
+  assert.equal(Core.formatNumber(1234.567, 2), '1.234,57');
+  assert.equal(Core.formatNumber(5, 2), '5');
+  assert.equal(Core.formatNumber(0.1, 3), '0,1');
+  assert.equal(Core.formatNumber(0.005, 3), '0,005');
+  assert.equal(Core.formatNumber(2080000000, 0), '2.080.000.000');
+});
+
+test('formatPercent adapts precision to size', () => {
+  assert.equal(Core.formatPercent(0), '0%');
+  assert.equal(Core.formatPercent(0.001), '< 0,01%');
+  assert.equal(Core.formatPercent(0.256), '0,26%');
+  assert.equal(Core.formatPercent(7.54), '7,5%');
+  assert.equal(Core.formatPercent(42.4), '42%');
+  assert.equal(Core.formatPercent(100), '100%');
+});
+
 test('monthlyInterest is simple interest divided over twelve months', () => {
   assert.equal(Core.monthlyInterest(1.2e9, 0.05), 5000000);
   assert.equal(Core.monthlyInterest(5.72e9, 0.05), 23833333);

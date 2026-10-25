@@ -18,7 +18,7 @@ npx serve .
 npm test
 ```
 
-Runs the unit tests in `test/` (formatting, purchase rules, interest, budget tiers and catalogue sanity) with Node's built-in test runner. Needs Node 18 or later.
+Runs the unit tests in `test/` (formatting, purchase rules, interest, stack height, budget tiers and catalogue sanity) with Node's built-in test runner. Needs Node 18 or later.
 
 ## Layout
 
@@ -28,9 +28,14 @@ Runs the unit tests in `test/` (formatting, purchase rules, interest, budget tie
 | `css/style.css` | Styles, responsive grid, light and dark theme |
 | `js/core.js` | Pure logic: VND formatting, monthly interest, quantity limits, saved-data validation |
 | `js/budgets.js` | The slider's wealth tiers, the USD→VND rate and the savings rate |
+| `js/stack.js` | Banknote-stack maths: height from money, length formatting, landmark list and comparison text |
 | `js/items.js` | The catalogue. Edit this to change what can be bought |
+| `js/share.js` | Draws the receipt as a shareable PNG card with the Canvas API |
+| `js/stackview.js` | Draws the stack height against landmarks on a logarithmic SVG ruler |
 | `js/app.js` | DOM wiring, state, money-bar animation, receipt |
 | `test/core.test.js` | Unit tests for `core.js` |
+| `test/stack.test.js` | Unit tests for `stack.js` |
+| `test/data.test.js` | Sanity checks for the budget tiers and the catalogue |
 
 ## Customising
 
@@ -39,6 +44,14 @@ Runs the unit tests in `test/` (formatting, purchase rules, interest, budget tie
 - **Budgets:** a slider picks one of eight tiers, left (smallest) to right (largest): 8 thousand, 50 thousand, 80 thousand, 220 thousand, 800 thousand, 10 million, 1 billion and 40 billion USD. Edit the tiers in `js/budgets.js`; they are defined in USD and converted with `VND_PER_USD` (26,000), so the page shows VND throughout.
 - **Interest box:** shows the monthly interest on the chosen tier's budget, as simple interest: budget × `ANNUAL_RATE` (5%) ÷ 12. It uses the tier you pick, not what you have left after shopping. Change the rate in `js/budgets.js`.
 - **Numbers:** amounts are plain JS numbers, exact up to about 9 × 10^15 ₫. The top tier is about 1.04 × 10^15 ₫, so it fits, but a much larger budget would need BigInt.
+
+## Receipt actions
+
+Once you have bought something, the receipt offers:
+
+- **Tạo thẻ chia sẻ (share card):** renders the receipt as a 1080 px wide PNG (top eight purchases, total, share of budget used, and the banknote-stack height) and opens a preview. From there you can **share** it (system share sheet, only shown where the browser supports sharing files), **download** it, or **copy the image** to the clipboard (only shown where image clipboard access exists). The image never leaves the browser unless you share it.
+- **Chồng tiền cao bao nhiêu? (stack height):** stacks everything you spent as 500.000 ₫ notes, 0,1 mm thick each, and compares the height with real landmarks on a logarithmic ruler (each major tick is 10 times the one below it, because the range runs from under a millimetre to hundreds of kilometres). The thickness and the landmark heights live in `js/stack.js`; figures marked `approx` are round "about" numbers. Check them before publishing.
+- **Làm lại từ đầu:** clears your purchases.
 
 ## Behaviour notes
 

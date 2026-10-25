@@ -43,6 +43,22 @@
     return parts.join(',') + ' ' + UNITS[i].label;
   }
 
+  // Round to at most `maxDecimals` places, drop trailing zeros, group the
+  // whole part with dots and use a comma for decimals: 1234.5 -> "1.234,5".
+  function formatNumber(n, maxDecimals) {
+    var f = Math.pow(10, maxDecimals == null ? 2 : maxDecimals);
+    var parts = String(Math.round(n * f) / f).split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    return parts.join(',');
+  }
+
+  // Percentage for 0-100 values: "0%", "< 0,01%", "0,25%", "7,5%", "42%".
+  function formatPercent(p) {
+    if (!(p > 0)) return '0%';
+    if (p < 0.01) return '< 0,01%';
+    return formatNumber(p, p < 1 ? 2 : p < 10 ? 1 : 0) + '%';
+  }
+
   // Simple (non-compounding) interest earned in one month on `principal`
   // at `annualRate` per year, e.g. 0.05 for 5%.
   function monthlyInterest(principal, annualRate) {
@@ -94,6 +110,8 @@
     groupDigits: groupDigits,
     formatVND: formatVND,
     formatCompact: formatCompact,
+    formatNumber: formatNumber,
+    formatPercent: formatPercent,
     monthlyInterest: monthlyInterest,
     maxQuantity: maxQuantity,
     clampQuantity: clampQuantity,
