@@ -53,5 +53,4 @@ window.ITEMS = [
   { id: 'san-bay', name: 'Xây một sân bay quốc tế', price: 416000000000000, emoji: '🛫', hue: 200, limit: 1 },
   // 1 triệu USD × 26.000 ₫/USD (see js/budgets.js)
   { id: 'passport-toan-cau', name: 'Passport toàn cầu', price: 26000000000, emoji: '🛂', hue: 195 },
-  { id: 'giay-cao-got-hoa-hau', name: 'Giày cao gót Hoa hậu', price: 10000000, emoji: '👠', hue: 355 }
 ];
